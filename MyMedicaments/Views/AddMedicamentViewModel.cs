@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
+using Microsoft.Maui.Media;
+using System.IO;
 
 namespace MauiApp1.Views
 {
@@ -59,6 +61,7 @@ namespace MauiApp1.Views
 
         public ICommand SaveCommand { get; }
         public ICommand GoBackCommand { get; }
+        public ICommand TakePhotoCommand { get; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -67,6 +70,7 @@ namespace MauiApp1.Views
             _databaseService = databaseService;
             SaveCommand = new Command(async () => await SaveMedicamentAsync());
             GoBackCommand = new Command(async () => await GoBackAsync());
+            TakePhotoCommand = new Command(async () => await TakePhotoAsync());
             AvailableCategories = new ObservableCollection<MedicamentCategory>(
                 Enum.GetValues(typeof(MedicamentCategory)).Cast<MedicamentCategory>());
             SelectedCategory = MedicamentCategory.Other;
@@ -104,6 +108,31 @@ namespace MauiApp1.Views
         private async Task GoBackAsync()
         {
             await Shell.Current.GoToAsync("///MainPage", true);
+        }
+
+        private async Task TakePhotoAsync()
+        {
+            try
+            {
+                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+                if (photo == null)
+                    return;
+
+                string fileName = $"medicament_{Guid.NewGuid()}{Path.GetExtension(photo.FileName)}";
+                string localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+
+                using (Stream sourceStream = await photo.OpenReadAsync())
+                using (FileStream localFileStream = File.OpenWrite(localPath))
+                {
+                    await sourceStream.CopyToAsync(localFileStream);
+                }
+
+                PhotoPath = localPath;
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (permissions, user cancel, etc.)
+            }
         }
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)

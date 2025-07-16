@@ -2,30 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.AddMedicament">
-    <VerticalStackLayout Padding="30" Spacing="20">
-        <Label Text="This is the new view!" FontSize="24" HorizontalOptions="Center" />
-        <Label Text="Hardcoded content goes here." FontSize="18" HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <Label Text="This is the new view!" FontSize="24" HorizontalOptions="Center" />
+            <Label Text="Hardcoded content goes here." FontSize="18" HorizontalOptions="Center" />
 
-        <!-- Medicament Creation Form -->
-        <Entry Placeholder="Name" Text="{Binding Name, Mode=TwoWay}" />
-        <Entry Placeholder="Description" Text="{Binding Description, Mode=TwoWay}" />
-        <DatePicker Date="{Binding ExpirationDate, Mode=TwoWay}" />
-        <!-- Category Field -->
-        <StackLayout>
-            <Label Text="Category *" 
-           FontSize="16" 
-           FontAttributes="Bold"
-           Margin="0,0,0,8"/>
-            <Picker Title="Select category"
-            SelectedItem="{Binding SelectedCategory}"
-            ItemsSource="{Binding AvailableCategories}">
-                <Picker.ItemDisplayBinding>
-                    <Binding Path="."/>
-                </Picker.ItemDisplayBinding>
-            </Picker>
-        </StackLayout>
-        <Entry Placeholder="Photo Path" Text="{Binding PhotoPath, Mode=TwoWay}" />
-        <Button Text="Save" Command="{Binding SaveCommand}" />
-        <Button Text="Back to Main Page" Command="{Binding GoBackCommand}" />
-    </VerticalStackLayout>
+            <!-- Medicament Creation Form -->
+            <Entry Placeholder="Name" Text="{Binding Name, Mode=TwoWay}" />
+            <Entry Placeholder="Description" Text="{Binding Description, Mode=TwoWay}" />
+            <DatePicker Date="{Binding ExpirationDate, Mode=TwoWay}" />
+            <!-- Category Field -->
+            <StackLayout>
+                <Label Text="Category *" 
+               FontSize="16" 
+               FontAttributes="Bold"
+               Margin="0,0,0,8"/>
+                <Picker Title="Select category"
+                SelectedItem="{Binding SelectedCategory}"
+                ItemsSource="{Binding AvailableCategories}">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="."/>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </StackLayout>
+            <Button Text="Take or Select Photo" Command="{Binding TakePhotoCommand}" />
+            <Image Source="{Binding PhotoPath}" HeightRequest="150" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
+            <Button Text="Save" Command="{Binding SaveCommand}" />
+            <Button Text="Back to Main Page" Command="{Binding GoBackCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage> 
