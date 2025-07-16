@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using MauiApp1.Infrastructure.Database;
 using MauiApp1.Views;
+using System.IO;
+using Microsoft.Maui.Storage;
 
 namespace MauiApp1
 {
@@ -16,7 +18,11 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .Services.AddSingleton<IMedicamentRepository, InMemoryMedicamentRepository>()
+                .Services.AddSingleton<IMedicamentRepository>(provider =>
+                {
+                    var dbPath = Path.Combine(FileSystem.Current.AppDataDirectory, "medicaments.db3");
+                    return new SqliteMedicamentRepository(dbPath);
+                })
                 .AddSingleton<MedicamentDatabaseService>()
                 .AddTransient<AddMedicamentViewModel>()
                 .AddTransient<MainPageViewModel>();
