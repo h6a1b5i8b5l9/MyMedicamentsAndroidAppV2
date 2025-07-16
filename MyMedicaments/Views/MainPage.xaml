@@ -29,13 +29,25 @@
             <CollectionView ItemsSource="{Binding Medicaments}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout Padding="10,5">
-                            <Image Source="{Binding PhotoPath}" HeightRequest="80" WidthRequest="80" Aspect="AspectFill" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
-                            <Label Text="{Binding Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Description}" />
-                            <Label Text="{Binding ExpirationDate, StringFormat='Expires: {0:yyyy-MM-dd}'}" />
-                            <Label Text="{Binding Category}" />
-                            <Label Text="{Binding PhotoPath}" />
+                        <VerticalStackLayout Padding="10,5" Spacing="6">
+                            <Image Source="{Binding PhotoPath}" HeightRequest="160" WidthRequest="160" Aspect="AspectFill" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
+                            <HorizontalStackLayout>
+                                <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />
+                                <Label Text="{Binding Name}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Description:" FontAttributes="Bold" FontSize="Medium" />
+                                <Label Text="{Binding Description}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Expiration Date:" FontAttributes="Bold" FontSize="Medium" />
+                                <Label Text="{Binding ExpirationDate, StringFormat='{0:yyyy-MM-dd}'}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Category:" FontAttributes="Bold" FontSize="Medium" />
+                                <Label Text="{Binding Category}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                            <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,0" />
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
