@@ -7,6 +7,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:NullToBoolConverter x:Key="NullToBoolConverter" />
+            <local:ExpiredToColorConverter x:Key="ExpiredToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -21,7 +22,7 @@
                 SemanticProperties.Description="dot net bot in a hovercraft number nine" />
 
             <Button
-                Text="Open New View"
+                Text="Add medicament"
                 Command="{Binding OpenNewViewCommand}"
                 HorizontalOptions="Fill" />
 
@@ -29,7 +30,7 @@
             <CollectionView ItemsSource="{Binding Medicaments}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout Padding="10,5" Spacing="6">
+                        <VerticalStackLayout Padding="10,5" Spacing="6" BackgroundColor="{Binding ExpirationDate, Converter={StaticResource ExpiredToColorConverter}}">
                             <Image Source="{Binding PhotoPath}" HeightRequest="160" WidthRequest="160" Aspect="AspectFill" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
                             <HorizontalStackLayout>
                                 <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />
