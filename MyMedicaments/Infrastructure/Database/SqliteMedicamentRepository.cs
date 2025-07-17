@@ -25,7 +25,8 @@ namespace MauiApp1.Infrastructure.Database
 
         public async Task<Medicament?> GetByIdAsync(Guid id)
         {
-            var dto = await _database.Table<MedicamentDto>().Where(m => m.Id == id.ToString()).FirstOrDefaultAsync();
+            var idStr = id.ToString();
+            var dto = await _database.Table<MedicamentDto>().Where(m => m.Id == idStr).FirstOrDefaultAsync();
             return dto == null ? null : ToMedicament(dto);
         }
 

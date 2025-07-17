@@ -15,5 +15,9 @@
         Title="Add medicament"
         ContentTemplate="{DataTemplate views:AddMedicament}"
         Route="AddMedicament" />
+    <ShellContent
+    Title="View medicament"
+    ContentTemplate="{DataTemplate views:ViewMedicament}"
+    Route="ViewMedicament" />
 
 </Shell>

@@ -25,7 +25,9 @@ namespace MauiApp1
                 })
                 .AddSingleton<MedicamentDatabaseService>()
                 .AddTransient<AddMedicamentViewModel>()
-                .AddTransient<MainPageViewModel>();
+                .AddTransient<MainPageViewModel>()
+                .AddTransient<ViewMedicamentViewModel>()
+                .AddTransient<ViewMedicament>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
