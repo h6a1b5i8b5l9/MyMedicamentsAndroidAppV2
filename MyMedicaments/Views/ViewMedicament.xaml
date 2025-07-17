@@ -4,6 +4,7 @@
              x:Class="MauiApp1.Views.ViewMedicament">
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Button Text="Back" Clicked="OnBackClicked" />
             <Image Source="{Binding PhotoPath}" HeightRequest="185" Aspect="AspectFit" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
             <HorizontalStackLayout>
                 <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />

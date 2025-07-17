@@ -35,5 +35,10 @@ namespace MauiApp1.Views
                 }
             }
         }
+
+        public async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///MainPage");
+        }
     }
 } 
