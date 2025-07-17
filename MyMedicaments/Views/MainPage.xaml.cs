@@ -32,7 +32,7 @@ namespace MauiApp1.Views
                     {
                         { "Medicament", selectedMedicament }
                     };
-                    await Shell.Current.GoToAsync("ViewMedicament", navigationParameter);
+                    await Shell.Current.GoToAsync("///ViewMedicament", navigationParameter);
                 }
             }
             // Deselect item

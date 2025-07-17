@@ -31,27 +31,24 @@
             <CollectionView ItemsSource="{Binding Medicaments}" SelectionChanged="OnMedicamentSelected">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout Padding="10,5" Spacing="6" BackgroundColor="{Binding ExpirationDate, Converter={StaticResource ExpiredToColorConverter}}">
-                            <Image Source="{Binding PhotoPath}" HeightRequest="160" WidthRequest="160" Aspect="AspectFill" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
-                            <HorizontalStackLayout>
-                                <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />
-                                <Label Text="{Binding Name}" FontSize="Medium" />
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label Text="Description:" FontAttributes="Bold" FontSize="Medium" />
-                                <Label Text="{Binding Description}" FontSize="Medium" />
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label Text="Expiration Date:" FontAttributes="Bold" FontSize="Medium" />
-                                <Label Text="{Binding ExpirationDate, StringFormat='{0:yyyy-MM-dd}'}" FontSize="Medium" />
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label Text="Category:" FontAttributes="Bold" FontSize="Medium" />
-                                <Label Text="{Binding Category}" FontSize="Medium" />
-                            </HorizontalStackLayout>
-                            <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,0" />
-                            <Button Text="View Details" Command="{Binding BindingContext.ViewMedicamentCommand, Source={x:Reference Name=MainPageRoot}}" CommandParameter="{Binding .}" />
-                        </VerticalStackLayout>
+                        <Grid Padding="10,5" Margin="0,0,0,16" BackgroundColor="{Binding ExpirationDate, Converter={StaticResource ExpiredToColorConverter}}" ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="4" Grid.Column="0">
+                                <HorizontalStackLayout>
+                                    <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />
+                                    <Label Text="{Binding Name}" FontSize="Medium" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="Category:" FontAttributes="Bold" FontSize="Medium" />
+                                    <Label Text="{Binding Category}" FontSize="Medium" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="Expiration Date:" FontAttributes="Bold" FontSize="Medium" />
+                                    <Label Text="{Binding ExpirationDate, StringFormat='{0:yyyy-MM-dd}'}" FontSize="Medium" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1" Text="View" Padding="10,0" HeightRequest="36" WidthRequest="60" VerticalOptions="Center" Command="{Binding BindingContext.ViewMedicamentCommand, Source={x:Reference Name=MainPageRoot}}" CommandParameter="{Binding .}" />
+                            <BoxView Grid.ColumnSpan="2" HeightRequest="1" Color="Gray" VerticalOptions="End" Margin="0,10,0,0" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
