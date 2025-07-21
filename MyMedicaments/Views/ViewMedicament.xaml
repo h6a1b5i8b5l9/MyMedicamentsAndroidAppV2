@@ -5,7 +5,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
             <Button Text="Back" Clicked="OnBackClicked" />
-            <Image Source="{Binding PhotoPath}" HeightRequest="185" Aspect="AspectFit" IsVisible="{Binding PhotoPath, Converter={StaticResource NullToBoolConverter}}" />
+            <Image Source="{Binding DisplayImagePath}" HeightRequest="185" Aspect="AspectFit" />
             <HorizontalStackLayout>
                 <Label Text="Name:" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="{Binding Name}" FontSize="Medium" />

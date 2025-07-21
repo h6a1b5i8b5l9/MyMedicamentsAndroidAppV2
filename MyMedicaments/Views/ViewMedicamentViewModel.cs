@@ -33,13 +33,25 @@ namespace MauiApp1.Views
         public string Category
         {
             get => category;
-            set { category = value; OnPropertyChanged(); }
+            set { category = value; OnPropertyChanged(); OnPropertyChanged(nameof(DisplayImagePath)); }
         }
 
         public string PhotoPath
         {
             get => photoPath;
-            set { photoPath = value; OnPropertyChanged(); }
+            set { photoPath = value; OnPropertyChanged(); OnPropertyChanged(nameof(DisplayImagePath)); }
+        }
+
+        public string DisplayImagePath
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(PhotoPath))
+                    return PhotoPath;
+                if (!string.IsNullOrEmpty(Category))
+                    return $"{Category}_default.png";
+                return null;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
